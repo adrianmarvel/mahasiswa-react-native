@@ -12,7 +12,7 @@ class App extends Component{
         listData:[],
         idEdit:null
       };
-      this.url = "http://192.168.1.102/mahasiswa/api/read.php";
+      this.url = "http://192.168.1.103/mahasiswa/api/read.php";
     }
     componentDidMount(){
       this.ambilListData();
@@ -32,11 +32,16 @@ class App extends Component{
 
     render(){
       return(
-        <View>
+        <View style={styles.container}>
+          <Text style={styles.font}>Data Mahasiswa</Text>
           {
             this.state.listData.map((val,index)=>
-            <View key={index}>
-              <Text>{val.nama}</Text>
+            <View style={styles.data} key={index}>
+              <Text>Nama : {val.nama}</Text>
+              <Text>Alamat : {val.alamat}</Text>
+              <Text>NIM : {val.nim}</Text>
+              <Text>Jurusan : {val.jurusan}</Text>
+              <Text>No. HP : {val.telp}</Text>
             </View>)
           }
         </View>
@@ -44,7 +49,18 @@ class App extends Component{
     }
   }
   
-  
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 100
+  },
+  font: {
+    textAlign: 'center',
+    fontSize: 32
+  },
+  data: {
+    marginTop: 20
+  }
+});
 
 export default App;
 /*export default App = () => {
