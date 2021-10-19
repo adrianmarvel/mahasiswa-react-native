@@ -5,9 +5,9 @@ import { FAB } from 'react-native-paper';
 export default App = () => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const [input, setInput] = useState({nama:"", alamat:"", nim:"", jurusan:"", telp:""});
   const [modalVisible, setModalVisible] = useState(false);
   const [text, onChangeText] = React.useState("");
-  const [text1, onChangeText1] = React.useState("");
 
   var modalBackgroundStyle = {
       backgroundColor: 'rgba(0, 0, 0, 0.5)'
@@ -16,7 +16,7 @@ export default App = () => {
 
   const getMovies = async () => {
      try {
-      const response = await fetch('http://192.168.1.102/mahasiswa/api/read.php');
+      const response = await fetch('http://192.168.1.100/mahasiswa/api/read.php');
       const json = await response.json();
       setData(json.data.result);
     } catch (error) {
@@ -69,33 +69,30 @@ export default App = () => {
             <Text style={styles.titleModal}>Masukan data mahasiswa</Text>
               <TextInput
                 style={styles.input}
-                onChangeText1={onChangeText1}
-                value={text}
+                onChangeText={(value)=>setInput({nama:value})}
                 placeholder="Nama"
               />
               <TextInput
                 style={styles.input}
-                onChangeText={onChangeText}
-                value={text}
+                onChangeText={(value)=>setInput({alamat:value})}
                 placeholder="Alamat"
               />
               <TextInput
                 style={styles.input}
-                onChangeText={onChangeText}
-                value={text}
+                onChangeText={(text)=>setInput({nim:text})}
                 placeholder="NIM"
+                keyboardType="numeric"
               />
               <TextInput
                 style={styles.input}
-                onChangeText={onChangeText}
-                value={text}
+                onChangeText={(text)=>setInput({jurusan:text})}
                 placeholder="Jurusan"
               />
               <TextInput
                 style={styles.input}
-                onChangeText={onChangeText}
-                value={text}
+                onChangeText={(text)=>setInput({telp:text})}
                 placeholder="No. HP"
+                keyboardType="numeric"
               />
               <View style={styles.fixToText}>
                 <Button
@@ -105,7 +102,7 @@ export default App = () => {
                 />
                 <Button
                   title="Simpan"
-                  onPress={() => Alert.alert('Right button pressed')}
+                  onPress={() => console.log(input)}
                 />
               </View>
             </View>
