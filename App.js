@@ -175,7 +175,6 @@ const styles = StyleSheet.create({
   },
   
   font: {
-    backgroundColor: 'hsl(360,80%,80%)',
     textAlign: 'center',
     fontSize: 32,
     marginVertical: 30
